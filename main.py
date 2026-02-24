@@ -31,9 +31,17 @@ new_book = Book(title="Atomic Habits", author="James Clear", genre="Life")
 session.add(new_book)
 session.commit()
 
-# Query the book from Book
-book = session.query(Book).filter_by(author="James Clear").first()
-print(book)
+# Select all books
+all_books = session.query(Book).all()
+print(all_books)
+
+# Select book with a specific author name
+get_book_by_author = session.query(Book).filter_by(author="James Clear").first()
+print(get_book_by_author)
+
+# Select a book with title starting with 'at'
+get_book_by_title = session.query(Book).filter(Book.title.like('at%')).all()
+print(get_book_by_title)
 
 # Close the session
 session.close()
